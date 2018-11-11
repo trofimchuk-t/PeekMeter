@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2003
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeekMetersForm", "PeekMetersForm\PeekMetersForm.csproj", "{232A36DE-2EA1-4092-8C7A-EE5494004D0D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PeekMeter", "PeekMeter\PeekMeter.vcxproj", "{7BBE59CE-8B72-44C0-B8E4-63AF8392037B}"
@@ -8,6 +10,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PeekMeterCppTest", "PeekMeterCppTest\PeekMeterCppTest.vcxproj", "{D705A6BE-2109-43F8-ACA9-9FD667B654AA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeekMetersWPF", "PeekMetersWPF\PeekMetersWPF.csproj", "{77868DA8-872D-474A-BB55-E9039F6AE06B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeekMeterWrapper", "PeekMeterWrapper\PeekMeterWrapper.csproj", "{78BB33AC-9B6D-4908-A540-799B36DCEDDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,8 +73,27 @@ Global
 		{77868DA8-872D-474A-BB55-E9039F6AE06B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{77868DA8-872D-474A-BB55-E9039F6AE06B}.Release|Win32.ActiveCfg = Release|Any CPU
 		{77868DA8-872D-474A-BB55-E9039F6AE06B}.Release|x86.ActiveCfg = Release|Any CPU
+		{78BB33AC-9B6D-4908-A540-799B36DCEDDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78BB33AC-9B6D-4908-A540-799B36DCEDDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78BB33AC-9B6D-4908-A540-799B36DCEDDA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{78BB33AC-9B6D-4908-A540-799B36DCEDDA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{78BB33AC-9B6D-4908-A540-799B36DCEDDA}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{78BB33AC-9B6D-4908-A540-799B36DCEDDA}.Debug|Win32.Build.0 = Debug|Any CPU
+		{78BB33AC-9B6D-4908-A540-799B36DCEDDA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{78BB33AC-9B6D-4908-A540-799B36DCEDDA}.Debug|x86.Build.0 = Debug|Any CPU
+		{78BB33AC-9B6D-4908-A540-799B36DCEDDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78BB33AC-9B6D-4908-A540-799B36DCEDDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78BB33AC-9B6D-4908-A540-799B36DCEDDA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{78BB33AC-9B6D-4908-A540-799B36DCEDDA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{78BB33AC-9B6D-4908-A540-799B36DCEDDA}.Release|Win32.ActiveCfg = Release|Any CPU
+		{78BB33AC-9B6D-4908-A540-799B36DCEDDA}.Release|Win32.Build.0 = Release|Any CPU
+		{78BB33AC-9B6D-4908-A540-799B36DCEDDA}.Release|x86.ActiveCfg = Release|Any CPU
+		{78BB33AC-9B6D-4908-A540-799B36DCEDDA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B0165232-3361-419D-8BE6-714CD31C0A4A}
 	EndGlobalSection
 EndGlobal
