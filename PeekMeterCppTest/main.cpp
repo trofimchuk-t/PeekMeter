@@ -21,7 +21,8 @@ class CPeekMeter
 public:
 	CPeekMeter();
 	float GetPeekLevel();
-
+	int GetChannelsCount();
+	bool GetPeekLevels(UINT channelsCount, float *levelsArr);
 	~CPeekMeter();
 };
 
@@ -63,10 +64,39 @@ float CPeekMeter::GetPeekLevel()
 	return peak;
 }
 
+int CPeekMeter::GetChannelsCount()
+{
+	static UINT channelsCount = 0;
+
+	hr = pMeterInfo->GetMeteringChannelCount(&channelsCount);
+	return channelsCount;
+}
+
+bool CPeekMeter::GetPeekLevels(UINT channelsCount, float *levelsArr)
+{
+	hr = pMeterInfo->GetChannelsPeakValues(channelsCount, levelsArr);
+
+	return hr == S_OK;
+}
+
+static CPeekMeter p;
+
 __declspec(dllexport) float GetLevel()
 {
-	static CPeekMeter p;
+	//static CPeekMeter p;
 	return p.GetPeekLevel();
+}
+
+__declspec(dllexport) int GetChannelsCount()
+{
+	//static CPeekMeter p;
+	return p.GetChannelsCount();
+}
+
+__declspec(dllexport) bool GetLevels(UINT channelsCount, float *levelsArr)
+{
+	//static CPeekMeter p;
+	return p.GetPeekLevels(channelsCount, levelsArr);
 }
 
 void hidecursor();
@@ -75,6 +105,14 @@ void main()
 {
 	hidecursor();
 	cout << "Hello\n";
+
+	int count = GetChannelsCount();
+	cout << "Channels count: " << count << "\n";
+
+	const int MaxChannelsCount = 8;
+	float levels[MaxChannelsCount] = {};
+	bool status = GetLevels(count, levels);
+	cout << "Level 1: " << levels[0] << "\n" << "Level 2: " << levels[1] << "\n";
 
 	while (true) {
 
