@@ -1,42 +1,55 @@
-﻿using System;
-using System.Runtime.InteropServices;
+﻿using PeekMeterWrapper;
+using System;
 using System.Windows.Forms;
-
 
 namespace PeekMetersForm
 {
     public partial class MainForm : Form
     {
-        [DllImport(@"PeekMeter.dll", EntryPoint = "GetLevel")]
-        public static extern float GetLevel();
-
+        private PeekMeter peekMeter = new PeekMeter();
         private Timer timer = new Timer();
-        private double level = 0;
-        private double lastLevel = 0;
+
+        private const int MaxProgressBarValue = 500;
+        private const int UpdateFrequency = 30;
+        private bool useFallingFading = true;
+        private float fadingCoef = 0.75f;
 
         public MainForm()
         {
             InitializeComponent();
 
-            progressBar1.Maximum = 1000;
-            timer.Interval = 1000 / 25;
-            timer.Tick += new EventHandler(timer_Tick);
+            progressBar1.Maximum = MaxProgressBarValue;
+            progressBar2.Maximum = MaxProgressBarValue;
+
+            timer.Interval = 1000 / UpdateFrequency;
+            timer.Tick += new EventHandler(UpdateLevels);
             timer.Start();
         }
 
-        void timer_Tick(object sender, EventArgs e)
+        private void UpdateLevels(object sender, EventArgs e)
         {
-            level = GetLevel();
-            if (level > lastLevel)
+            var levels = peekMeter.GetLevels();
+
+            UpdateProgressBar(progressBar1, levels[0]);
+            UpdateProgressBar(progressBar2, levels[1]);
+        }
+
+        private void UpdateProgressBar(ProgressBar progressBar, float level)
+        {
+            int preparedValue = (int)(level * MaxProgressBarValue);
+            int prevProgressBarValue = progressBar.Value;
+
+            if (useFallingFading && preparedValue < prevProgressBarValue)
             {
-                lastLevel = level;
+                if (preparedValue < prevProgressBarValue * fadingCoef)
+                {
+                    preparedValue = (int)(prevProgressBarValue * fadingCoef);
+                }
             }
-            else
-            {
-                lastLevel *= 0.75;
-            }
-            progressBar1.Value = 1000;
-            progressBar1.Value = (int)(lastLevel * 1000);
+
+            // need to immediately updating progress bar value
+            progressBar.Value = MaxProgressBarValue;
+            progressBar.Value = preparedValue;
         }
     }
 }
